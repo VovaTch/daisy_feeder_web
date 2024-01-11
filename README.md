@@ -1,2 +1,3 @@
-# daisy_feeder_web
-The web version of the Daisy Feeder app
+# Daisy Feeder Web
+
+The web version of Daisy Feeder app, intended to go to web.
