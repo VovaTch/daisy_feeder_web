@@ -11,6 +11,7 @@ const retrieveDataMobile = async (key) => {
     const storedAuthToken = await SecureStore.getItemAsync(key);
     if (storedAuthToken !== null) {
       console.log(`Retrieved key: ${key}`);
+      return storedAuthToken;
     } else {
       console.log("Key not found in SecureStorage");
     }
@@ -24,6 +25,7 @@ const retrieveDataWeb = async (key) => {
     const storedAuthToken = await AsyncStorage.getItem(key);
     if (storedAuthToken !== null) {
       console.log(`Retrieved key: ${key}`);
+      return storedAuthToken;
     } else {
       console.log("Key not found in SecureStorage");
     }
@@ -79,9 +81,11 @@ const removeDataWeb = async (key) => {
 export const retrieveData = async (key) => {
   try {
     if (Platform.OS === "web") {
-      await retrieveDataWeb(key);
+      const retrievedData = await retrieveDataWeb(key);
+      return retrievedData;
     } else {
-      await retrieveDataMobile(key);
+      const retrievedData = await retrieveDataMobile(key);
+      return retrievedData;
     }
   } catch (error) {
     console.log("Error retrieving key:", error);
